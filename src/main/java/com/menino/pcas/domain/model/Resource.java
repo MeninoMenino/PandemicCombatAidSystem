@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 public class Resource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long resourceId;
 	@NotBlank
 	private String name;
 	@NotNull
@@ -23,6 +24,12 @@ public class Resource {
 	
 	
 	//Getters and Setters
+	public Long getResourceId() {
+		return resourceId;
+	}
+	public void setResourceId(Long resourceId) {
+		this.resourceId = resourceId;
+	}
 	public String getName() {
 		return name;
 	}
