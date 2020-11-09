@@ -2,13 +2,13 @@ package com.menino.pcas.domain.dto;
 
 public class HospitalOccupancyDto {
 
-	private int occupancy;
+	private float occupancy;
 	
 	//Getters and Setters
-	public int getOccupancy() {
+	public float getOccupancy() {
 		return occupancy;
 	}
-	public void setOccupancy(int occupancy) {
+	public void setOccupancy(float occupancy) {
 		this.occupancy = occupancy;
 	}
 }
