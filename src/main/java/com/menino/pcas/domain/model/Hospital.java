@@ -2,7 +2,9 @@ package com.menino.pcas.domain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,10 +13,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Hospital {
+public class Hospital{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long hospitalId;
+	private Long hospital_id;
 	@NotBlank
 	private String name;
 	@NotBlank
@@ -26,11 +28,17 @@ public class Hospital {
 	@NotNull
 	private float occupancyRate;
 	@NotNull
-	@OneToMany(mappedBy = "hospital")
+	@OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<HospitalResource> resources;
-
+	
 	
 	//Getters and Setters
+	public Long getHospital_id() {
+		return hospital_id;
+	}
+	public void setHospital_id(Long hospital_id) {
+		this.hospital_id = hospital_id;
+	}
 	public String getName() {
 		return name;
 	}
@@ -66,11 +74,5 @@ public class Hospital {
 	}
 	public void setResources(List<HospitalResource> resources) {
 		this.resources = resources;
-	}
-	public Long getHospitalId() {
-		return hospitalId;
-	}
-	public void setHospitalId(Long hospitalId) {
-		this.hospitalId = hospitalId;
 	}
 }

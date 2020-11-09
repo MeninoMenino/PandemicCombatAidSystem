@@ -1,6 +1,7 @@
 package com.menino.pcas.domain.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,16 +11,16 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class HospitalResource {
+public class HospitalResource{
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long resourceId;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long resource_id;
 	@NotBlank
 	private String name;
 	@NotNull
 	private int quantity;
-	@ManyToOne
-	@JoinColumn(name = "hospital_id")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "hospital_id", referencedColumnName = "hospital_id")
 	private Hospital hospital;
 	
 	
@@ -37,10 +38,10 @@ public class HospitalResource {
 		this.quantity = quantity;
 	}
 	public Long getResourceId() {
-		return resourceId;
+		return resource_id;
 	}
 	public void setResourceId(Long resourceId) {
-		this.resourceId = resourceId;
+		this.resource_id = resourceId;
 	}
 	public Hospital getHospital() {
 		return hospital;

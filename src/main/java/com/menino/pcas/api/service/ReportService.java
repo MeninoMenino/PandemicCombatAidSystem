@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.menino.pcas.domain.model.Hospital;
 
 @Service
-public class OccupancyPercentageService {
+public class ReportService {
 	public float[] calculateOccupancyPercentage(List<Hospital> hospitalList) {
 		int highOccupancyCount = 0, lowOccupancyCount = 0;
 		float highOccupancyPercentage, lowOccupancyPercentage;
