@@ -1,12 +1,9 @@
 package com.menino.pcas.domain.model;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -19,10 +16,6 @@ public class HospitalResource{
 	private String name;
 	@NotNull
 	private int quantity;
-	/*
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "hospital_id", insertable = false)
-	public Hospital hospital;*/
 	
 	
 	//Getters and Setters
@@ -44,10 +37,4 @@ public class HospitalResource{
 	public void setResourceId(Long resourceId) {
 		this.resource_id = resourceId;
 	}
-	/*public Hospital getHospital() {
-		return hospital;
-	}
-	public void setHospital(Hospital hospital) {
-		this.hospital = hospital;
-	}*/
 }
