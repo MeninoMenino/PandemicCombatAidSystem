@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.menino.pcas.domain.dto.HospitalOccupancyDto;
 import com.menino.pcas.domain.model.Hospital;
 import com.menino.pcas.domain.repository.HospitalRepository;
 
@@ -44,7 +46,18 @@ public class HospitalController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Hospital postHospital(@Valid @RequestBody Hospital hospital) {
-		hospital.setAddress("Asd");
 		return hospitalRepository.save(hospital);
+	}
+	
+	@PatchMapping("/{hospitalId}")
+	public ResponseEntity<Hospital> patchHospitalOccupancy(@Valid @RequestBody HospitalOccupancyDto hospitalDto, @PathVariable Long hospitalId) {
+		Optional<Hospital> hospital = hospitalRepository.findById(hospitalId);
+		if(hospital.isPresent()) {
+			hospital.get().setOccupancyRate(hospitalDto.getOccupancy());
+			hospitalRepository.save(hospital.get());
+			return ResponseEntity.ok(hospital.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

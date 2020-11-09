@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 public class HospitalResource {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long resource_id;
+	private Long resourceId;
 	@NotBlank
 	private String name;
 	@NotNull
@@ -36,11 +36,11 @@ public class HospitalResource {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Long getResource_id() {
-		return resource_id;
+	public Long getResourceId() {
+		return resourceId;
 	}
-	public void setResource_id(Long resource_id) {
-		this.resource_id = resource_id;
+	public void setResourceId(Long resourceId) {
+		this.resourceId = resourceId;
 	}
 	public Hospital getHospital() {
 		return hospital;
