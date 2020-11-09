@@ -27,16 +27,10 @@ public class Hospital {
 	private float occupancyRate;
 	@NotNull
 	@OneToMany(mappedBy = "hospital")
-	private List<Resource> resources;
-	
+	private List<HospitalResource> resources;
+
 	
 	//Getters and Setters
-	public Long getHospitalId() {
-		return hospitalId;
-	}
-	public void setHospitalId(Long hospitalId) {
-		this.hospitalId = hospitalId;
-	}
 	public String getName() {
 		return name;
 	}
@@ -66,5 +60,17 @@ public class Hospital {
 	}
 	public void setOccupancyRate(float occupancyRate) {
 		this.occupancyRate = occupancyRate;
+	}
+	public List<HospitalResource> getResources() {
+		return resources;
+	}
+	public void setResources(List<HospitalResource> resources) {
+		this.resources = resources;
+	}
+	public Long getHospitalId() {
+		return hospitalId;
+	}
+	public void setHospitalId(Long hospitalId) {
+		this.hospitalId = hospitalId;
 	}
 }

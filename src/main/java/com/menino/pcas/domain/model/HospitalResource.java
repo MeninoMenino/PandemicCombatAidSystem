@@ -10,26 +10,20 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Resource {
+public class HospitalResource {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long resourceId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long resource_id;
 	@NotBlank
 	private String name;
 	@NotNull
 	private int quantity;
 	@ManyToOne
-	@JoinColumn(name = "hospitalId")
+	@JoinColumn(name = "hospital_id")
 	private Hospital hospital;
 	
 	
 	//Getters and Setters
-	public Long getResourceId() {
-		return resourceId;
-	}
-	public void setResourceId(Long resourceId) {
-		this.resourceId = resourceId;
-	}
 	public String getName() {
 		return name;
 	}
@@ -41,6 +35,12 @@ public class Resource {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public Long getResource_id() {
+		return resource_id;
+	}
+	public void setResource_id(Long resource_id) {
+		this.resource_id = resource_id;
 	}
 	public Hospital getHospital() {
 		return hospital;
