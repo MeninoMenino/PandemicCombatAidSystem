@@ -1,5 +1,7 @@
 package com.menino.pcas.domain.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,12 +10,16 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Hospital{
+public class Hospital implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long hospital_id;
@@ -28,7 +34,10 @@ public class Hospital{
 	@NotNull
 	private float occupancyRate;
 	@NotNull
-	@OneToMany(mappedBy = "hospital", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "hospital_resource_join_table",
+			   joinColumns = {@JoinColumn(name = "hospital_fk")},
+			   inverseJoinColumns = {@JoinColumn(name = "hospital_resource_fk")})
 	private List<HospitalResource> resources;
 	
 	

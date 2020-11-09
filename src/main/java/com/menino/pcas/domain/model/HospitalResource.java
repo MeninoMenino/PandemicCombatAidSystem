@@ -19,9 +19,10 @@ public class HospitalResource{
 	private String name;
 	@NotNull
 	private int quantity;
+	/*
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "hospital_id", referencedColumnName = "hospital_id")
-	private Hospital hospital;
+	@JoinColumn(name = "hospital_id", insertable = false)
+	public Hospital hospital;*/
 	
 	
 	//Getters and Setters
@@ -43,10 +44,10 @@ public class HospitalResource{
 	public void setResourceId(Long resourceId) {
 		this.resource_id = resourceId;
 	}
-	public Hospital getHospital() {
+	/*public Hospital getHospital() {
 		return hospital;
 	}
 	public void setHospital(Hospital hospital) {
 		this.hospital = hospital;
-	}
+	}*/
 }

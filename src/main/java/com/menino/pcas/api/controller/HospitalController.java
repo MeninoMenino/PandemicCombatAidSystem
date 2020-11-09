@@ -45,7 +45,7 @@ public class HospitalController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Hospital postHospital(@Valid @RequestBody Hospital hospital) {
+	public Hospital postHospital(@Valid @RequestBody Hospital hospital) {		
 		return hospitalRepository.save(hospital);
 	}
 	
