@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.menino.pcas.api.service.OccupancyPercentageService;
+import com.menino.pcas.domain.dto.Report;
 import com.menino.pcas.domain.model.Hospital;
-import com.menino.pcas.domain.model.Report;
 import com.menino.pcas.domain.repository.HospitalRepository;
 
 @RestController
@@ -17,25 +18,16 @@ public class ReportController {
 	
 	@Autowired
 	HospitalRepository hospitalRepository;
+	@Autowired
+	OccupancyPercentageService occupancyPercentageService;
 	
 	@GetMapping
 	public Report getReport(){
 		List<Hospital> hospitalList = hospitalRepository.findAll();
-		int highOccupancyCount = 0, lowOccupancyCount = 0;
-		float highOccupancyPercentage, lowOccupancyPercentage;
 		
-		for(int i = 0; i < hospitalList.size(); i++) {
-			if(hospitalList.get(i).getOccupancyRate() >= 90) {
-				highOccupancyCount++;
-			} else {
-				lowOccupancyCount++;
-			}
-		}
+		float[] percentageValues = occupancyPercentageService.calculateOccupancyPercentage(hospitalList);
 		
-		highOccupancyPercentage = (100 * highOccupancyCount)/hospitalList.size();
-		lowOccupancyPercentage = (100 * lowOccupancyCount)/hospitalList.size();
-		
-		Report report = new Report(highOccupancyPercentage, lowOccupancyPercentage);
+		Report report = new Report(percentageValues[0], percentageValues[1]);
 		return report;
 	}
 	

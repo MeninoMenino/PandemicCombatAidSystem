@@ -1,4 +1,4 @@
-package com.menino.pcas.domain.model;
+package com.menino.pcas.domain.dto;
 
 public class Report {
 
