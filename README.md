@@ -6,7 +6,7 @@ Arquivo com a query do banco de dados: database/db-query.sql
 
 -----Endpoints-----
 
-#/hospital
+# /hospital
 
 -GET /hospital: Retorna uma lista com todos os hospitais registrados.
 
@@ -19,14 +19,14 @@ Arquivo com a query do banco de dados: database/db-query.sql
                                 Body: occupancy(float)
 
 
-#/negotiation
+# /negotiation
 
 -GET /negotiation: Retorna uma lista com todas as negociações registradas
 -POST /negotiation: Registra uma nova negociação
                     Body: id_first_hospital(long), id_second_hospital(long), resources_first_hospital{name(String), quantity(int)}, resources_second_hospital{name(String), quantity(int)}
 
 
-#/report
+# /report
 
 -GET /report: Retorna um relatório com:
                                        -Porcentagem de hospitais com taxa de ocupação acima de 90%
