@@ -22,14 +22,22 @@ hospital_fk bigint,
 hospital_resource_fk bigint,
 FOREIGN KEY(hospital_fk) REFERENCES hospital(hospital_id),
 FOREIGN KEY(hospital_resource_fk) REFERENCES hospital_resource(resource_id)
-);
+) ENGINE = innodb;
 
 create table negotiation(
 negotiation_id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 id_first_hospital BIGINT NOT NULL,
 id_second_hospital BIGINT NOT NULL,
 negotiation_date_time datetime NOT NULL
-);
+) ENGINE = innodb;
+
+create table negotiation_resource_join_table(
+negotiation_fk bigint,
+hospital_resource_fk bigint,
+FOREIGN KEY(negotiation_fk) REFERENCES negotiation(negotiation_id),
+FOREIGN KEY(hospital_resource_fk) REFERENCES hospital_resource(resource_id)
+) ENGINE = innodb;
+
 
 #------------Fixed resources and values------------
 

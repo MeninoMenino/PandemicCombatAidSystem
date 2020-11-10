@@ -3,11 +3,14 @@ package com.menino.pcas.domain.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 import com.sun.istack.NotNull;
 
@@ -21,12 +24,18 @@ public class Negotiation {
 	@NotNull
 	private Long id_second_hospital;
 	private LocalDateTime negotiation_date_time;
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "negotiation_resource_join_table",
+			   joinColumns = {@JoinColumn(name = "negotiation_fk")},
+			   inverseJoinColumns = {@JoinColumn(name = "hospital_resource_fk")})
 	private List<HospitalResource> resources_first_hospital;
-	@Transient
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "negotiation_resource_join_table",
+			   joinColumns = {@JoinColumn(name = "negotiation_fk")},
+			   inverseJoinColumns = {@JoinColumn(name = "hospital_resource_fk")})
 	private List<HospitalResource> resources_second_hospital;
-	
-	
+
+
 	//Getters and Setters
 	public Long getNegotiation_id() {
 		return negotiation_id;
