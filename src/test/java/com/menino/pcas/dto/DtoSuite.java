@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ReportTest.class, HospitalOccupancyDtoTest.class })
+@SuiteClasses({ ReportTest.class, HospitalOccupancyDtoTest.class, ResourceAverageDtoTest.class })
 public class DtoSuite {
 
 }
