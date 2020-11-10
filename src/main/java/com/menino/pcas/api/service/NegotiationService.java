@@ -1,5 +1,6 @@
 package com.menino.pcas.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +57,7 @@ public class NegotiationService {
 				}
 			}
 		}
-		
+
 		//Compare values
 		if(valueFirstHospital < valueSecondHospital) {
 			if(firstHospital.getOccupancyRate() > 90) {
@@ -76,36 +77,66 @@ public class NegotiationService {
 	}
 
 	public void trade(Hospital firstHospital, Hospital secondHospital, Negotiation negotiation) {
+		//Resources from negotiation
 		List<HospitalResource> resourcesFirstHospital = negotiation.getResources_first_hospital();
 		List<HospitalResource> resourcesSecondHospital = negotiation.getResources_second_hospital();
-		
+
+		//Items to remove from resources list
+		List<HospitalResource> exclResourcesFirst = new ArrayList<>();
+		List<HospitalResource> exclResourcesSecond = new ArrayList<>();
+		//Items to add to resources list
+		List<HospitalResource> addResourcesFirst = new ArrayList<>();
+		addResourcesFirst.addAll(resourcesSecondHospital);
+		List<HospitalResource> addResourcesSecond = new ArrayList<>();
+		addResourcesSecond.addAll(resourcesFirstHospital);
+
 		for(HospitalResource rsrc : resourcesFirstHospital) {
+			//-quantity in first hospital resources
 			for(HospitalResource hsptlRsrc : firstHospital.getResources()) {
 				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					if(hsptlRsrc.getQuantity() == 1) {
-						//firstHospital.getResources().remove(hsptlRsrc);
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity()-1);
+					if(hsptlRsrc.getQuantity() == rsrc.getQuantity()) {
+						exclResourcesFirst.add(hsptlRsrc);
 					} else {
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity()-1);
+						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - rsrc.getQuantity());
 					}
 				}
 			}
-			secondHospital.getResources().add(rsrc);
-		}
-		for(HospitalResource rsrc : resourcesSecondHospital) {
+			//+ quantity in second hospital
 			for(HospitalResource hsptlRsrc : secondHospital.getResources()) {
 				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					if(hsptlRsrc.getQuantity() == 1) {
-						//secondHospital.getResources().remove(hsptlRsrc);
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity()-1);
+					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + rsrc.getQuantity());
+					addResourcesSecond.remove(rsrc);
+				}
+			}
+		}
+
+		for(HospitalResource rsrc : resourcesSecondHospital) {
+			//-quantity in second hospital resources
+			for(HospitalResource hsptlRsrc : secondHospital.getResources()) {
+				if(hsptlRsrc.getName().equals(rsrc.getName())) {
+					if(hsptlRsrc.getQuantity() == rsrc.getQuantity()) {
+						exclResourcesSecond.add(hsptlRsrc);
 					} else {
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity()-1);
+						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - rsrc.getQuantity());
 					}
 				}
 			}
-			firstHospital.getResources().add(rsrc);
+			//+ quantity in first hospital
+			for(HospitalResource hsptlRsrc : firstHospital.getResources()) {
+				if(hsptlRsrc.getName().equals(rsrc.getName())) {
+					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + rsrc.getQuantity());
+					addResourcesFirst.remove(rsrc);
+				}
+			}
 		}
-		
+
+		//Add resources to hospitals
+		firstHospital.getResources().addAll(addResourcesFirst);
+		secondHospital.getResources().addAll(addResourcesSecond);
+		//Delete resources from hospitals
+		firstHospital.getResources().removeAll(exclResourcesFirst);
+		secondHospital.getResources().removeAll(exclResourcesSecond);
+
 		hospitalRepository.save(firstHospital);
 		hospitalRepository.save(secondHospital);
 	}
