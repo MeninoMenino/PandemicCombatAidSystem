@@ -4,7 +4,10 @@ REST API desenvolvida com Spring para registrar hospitais e recursos, e operar i
 
 Arquivo com a query do banco de dados: database/db-query.sql
 
------Endpoints-----
+
+
+--------------------------Endpoints--------------------------
+
 
 # /hospital
 
