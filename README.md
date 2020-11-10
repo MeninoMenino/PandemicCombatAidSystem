@@ -32,7 +32,7 @@ Arquivo com a query do banco de dados: database-schema/db-query.sql
 ### /report
 
 - GET /report: Retorna um relatório com:
- - Porcentagem de hospitais com taxa de ocupação acima de 90%
- - Porcentagem de hospitais com taxa de ocupação abaixo de 90%
- - Média de recursos por hospital
- - Histórico de negociações
+ 1. Porcentagem de hospitais com taxa de ocupação acima de 90%
+ 2. Porcentagem de hospitais com taxa de ocupação abaixo de 90%
+ 3. Média de recursos por hospital
+ 4. Histórico de negociações
