@@ -14,7 +14,7 @@ public class ReportService {
 		float[] percentageValues = new float[2];
 		
 		for(int i = 0; i < hospitalList.size(); i++) {
-			if(hospitalList.get(i).getOccupancyRate() >= 90) {
+			if(hospitalList.get(i).getOccupancyRate() > 90) {
 				highOccupancyCount++;
 			} else {
 				lowOccupancyCount++;
