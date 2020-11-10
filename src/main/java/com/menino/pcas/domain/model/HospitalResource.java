@@ -18,6 +18,14 @@ public class HospitalResource{
 	private int quantity;
 	
 	
+	//Constructor
+	public HospitalResource() {}
+	
+	public HospitalResource(String name, int quantity) {
+		setName(name);
+		setQuantity(quantity);
+	}
+	
 	//Getters and Setters
 	public String getName() {
 		return name;

@@ -39,6 +39,19 @@ public class Hospital implements Serializable{
 	private List<HospitalResource> resources;
 	
 	
+	//Constructor
+	public Hospital() {}
+	
+	public Hospital(Long hospital_id, String name, String address, String cnpj, String localization, float occupancyRate, List<HospitalResource> resources) {
+		setHospital_id(hospital_id);
+		setName(name);
+		setAddress(address);
+		setCnpj(cnpj);
+		setLocalization(localization);
+		setOccupancyRate(occupancyRate);
+		setResources(resources);
+	}
+	
 	//Getters and Setters
 	public Long getHospital_id() {
 		return hospital_id;

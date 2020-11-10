@@ -90,42 +90,42 @@ public class NegotiationService {
 		List<HospitalResource> addResourcesSecond = new ArrayList<>();
 		addResourcesSecond.addAll(resourcesFirstHospital);
 
-		for(HospitalResource rsrc : resourcesFirstHospital) {
+		for(HospitalResource negotiationRsrc : resourcesFirstHospital) {
 			//-quantity in first hospital resources
 			for(HospitalResource hsptlRsrc : firstHospital.getResources()) {
-				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					if(hsptlRsrc.getQuantity() == rsrc.getQuantity()) {
+				if(hsptlRsrc.getName().equals(negotiationRsrc.getName())) {
+					if(hsptlRsrc.getQuantity() == negotiationRsrc.getQuantity()) {
 						exclResourcesFirst.add(hsptlRsrc);
 					} else {
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - rsrc.getQuantity());
+						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - negotiationRsrc.getQuantity());
 					}
 				}
 			}
 			//+ quantity in second hospital
 			for(HospitalResource hsptlRsrc : secondHospital.getResources()) {
-				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + rsrc.getQuantity());
-					addResourcesSecond.remove(rsrc);
+				if(hsptlRsrc.getName().equals(negotiationRsrc.getName())) {
+					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + negotiationRsrc.getQuantity());
+					addResourcesSecond.remove(negotiationRsrc);
 				}
 			}
 		}
 
-		for(HospitalResource rsrc : resourcesSecondHospital) {
+		for(HospitalResource negotiationRsrc : resourcesSecondHospital) {
 			//-quantity in second hospital resources
 			for(HospitalResource hsptlRsrc : secondHospital.getResources()) {
-				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					if(hsptlRsrc.getQuantity() == rsrc.getQuantity()) {
+				if(hsptlRsrc.getName().equals(negotiationRsrc.getName())) {
+					if(hsptlRsrc.getQuantity() == negotiationRsrc.getQuantity()) {
 						exclResourcesSecond.add(hsptlRsrc);
 					} else {
-						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - rsrc.getQuantity());
+						hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() - negotiationRsrc.getQuantity());
 					}
 				}
 			}
 			//+ quantity in first hospital
 			for(HospitalResource hsptlRsrc : firstHospital.getResources()) {
-				if(hsptlRsrc.getName().equals(rsrc.getName())) {
-					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + rsrc.getQuantity());
-					addResourcesFirst.remove(rsrc);
+				if(hsptlRsrc.getName().equals(negotiationRsrc.getName())) {
+					hsptlRsrc.setQuantity(hsptlRsrc.getQuantity() + negotiationRsrc.getQuantity());
+					addResourcesFirst.remove(negotiationRsrc);
 				}
 			}
 		}

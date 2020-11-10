@@ -16,7 +16,8 @@ public class Report {
 		setNegotiationHistory(negotiationHistory);
 	}
 
-
+	public Report() {}
+	
 	//Getters and Setters
 	public float getHighOccupancyRate() {
 		return highOccupancyRate;
