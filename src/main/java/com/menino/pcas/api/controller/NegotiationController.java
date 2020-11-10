@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.menino.pcas.api.service.NegotiationService;
 import com.menino.pcas.domain.model.Negotiation;
 import com.menino.pcas.domain.repository.NegotiationRepository;
 
@@ -21,6 +22,8 @@ public class NegotiationController {
 	
 	@Autowired
 	NegotiationRepository negotiationRepository;
+	@Autowired
+	NegotiationService negotiationService;
 	
 	@GetMapping
 	public List<Negotiation> getNegotiationList(){
@@ -30,6 +33,7 @@ public class NegotiationController {
 	@PostMapping
 	public Negotiation postNegotiation(@Valid @RequestBody Negotiation negotiation) {
 		negotiation.setNegotiation_date_time(LocalDateTime.now());
+		negotiationService.negotiate(negotiation);
 		return negotiationRepository.save(negotiation);
 	}
 }

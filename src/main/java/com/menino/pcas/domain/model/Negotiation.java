@@ -22,9 +22,9 @@ public class Negotiation {
 	private Long id_second_hospital;
 	private LocalDateTime negotiation_date_time;
 	@Transient
-	private List<HospitalResource> resourcesFirstHospital;
+	private List<HospitalResource> resources_first_hospital;
 	@Transient
-	private List<HospitalResource> resourcesSecondHospital;
+	private List<HospitalResource> resources_second_hospital;
 	
 	
 	//Getters and Setters
@@ -52,16 +52,16 @@ public class Negotiation {
 	public void setNegotiation_date_time(LocalDateTime negotiation_date_time) {
 		this.negotiation_date_time = negotiation_date_time;
 	}
-	public List<HospitalResource> getResourcesFirstHospital() {
-		return resourcesFirstHospital;
+	public List<HospitalResource> getResources_first_hospital() {
+		return resources_first_hospital;
 	}
-	public void setResourcesFirstHospital(List<HospitalResource> resourcesFirstHospital) {
-		this.resourcesFirstHospital = resourcesFirstHospital;
+	public void setResources_first_hospital(List<HospitalResource> resources_first_hospital) {
+		this.resources_first_hospital = resources_first_hospital;
 	}
-	public List<HospitalResource> getResourcesSecondHospital() {
-		return resourcesSecondHospital;
+	public List<HospitalResource> getResources_second_hospital() {
+		return resources_second_hospital;
 	}
-	public void setResourcesSecondHospital(List<HospitalResource> resourcesSecondHospital) {
-		this.resourcesSecondHospital = resourcesSecondHospital;
+	public void setResources_second_hospital(List<HospitalResource> resources_second_hospital) {
+		this.resources_second_hospital = resources_second_hospital;
 	}
 }
