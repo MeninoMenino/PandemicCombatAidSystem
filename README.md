@@ -2,7 +2,7 @@
 
 REST API desenvolvida com Spring para registrar hospitais e recursos, e operar intercâmbio de recursos entre os hospitais.
 
-Arquivo com a query do banco de dados: database/db-query.sql
+Arquivo com a query do banco de dados: database-schema/db-query.sql
 
 
 
