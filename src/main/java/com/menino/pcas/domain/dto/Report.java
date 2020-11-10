@@ -9,11 +9,13 @@ public class Report {
 	private float highOccupancyRate;
 	private float lowOccupancyRate;
 	private List<Negotiation> negotiationHistory;
-
-	public Report(float highRate, float lowRate, List<Negotiation> negotiationHistory) {
+	private List<ResourceAverageDto> resourceAverageList;
+	
+	public Report(float highRate, float lowRate, List<Negotiation> negotiationHistory, List<ResourceAverageDto> resourceAverageList) {
 		setHighOccupancyRate(highRate);
 		setLowOccupancyRate(lowRate);
 		setNegotiationHistory(negotiationHistory);
+		setResourceAverageList(resourceAverageList);
 	}
 
 	public Report() {}
@@ -36,5 +38,12 @@ public class Report {
 	}
 	public void setNegotiationHistory(List<Negotiation> negotiationHistory) {
 		this.negotiationHistory = negotiationHistory;
+	}
+	public List<ResourceAverageDto> getResourceAverageList() {
+		return resourceAverageList;
+	}
+
+	public void setResourceAverageList(List<ResourceAverageDto> resourceAverageList) {
+		this.resourceAverageList = resourceAverageList;
 	}
 }

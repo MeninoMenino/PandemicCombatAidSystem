@@ -1,10 +1,13 @@
 package com.menino.pcas.api.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.menino.pcas.domain.dto.ResourceAverageDto;
 import com.menino.pcas.domain.model.Hospital;
+import com.menino.pcas.domain.model.HospitalResource;
 
 @Service
 public class ReportService {
@@ -28,5 +31,39 @@ public class ReportService {
 		percentageValues[1] = lowOccupancyPercentage;
 		
 		return percentageValues;
+	}
+	
+	public List<ResourceAverageDto> calculateResourcesAverage(List<HospitalResource> resourcesList, int hospitalQuant){
+		List<ResourceAverageDto> resourceAverageList = new ArrayList<>();
+		//Counters
+		int medicoCount = 0, enfermeiroCount = 0, respiradorCount = 0, tomografoCount = 0, ambulanciaCount = 0; 
+		
+		for(HospitalResource rsrc : resourcesList) {
+			switch(rsrc.getName()) {
+			case "Médico": 
+				medicoCount += rsrc.getQuantity();
+				break;
+			case "Enfermeiro": 
+				enfermeiroCount += rsrc.getQuantity();
+				break;
+			case "Respirador": 
+				respiradorCount += rsrc.getQuantity();
+				break;
+			case "Tomógrafo": 
+				tomografoCount += rsrc.getQuantity();
+				break;
+			case "Ambulância": 
+				ambulanciaCount += rsrc.getQuantity();
+				break;
+			}
+		}
+		
+		resourceAverageList.add(new ResourceAverageDto("Médico", medicoCount/hospitalQuant));
+		resourceAverageList.add(new ResourceAverageDto("Enfermeiro", enfermeiroCount/hospitalQuant));
+		resourceAverageList.add(new ResourceAverageDto("Respirador", respiradorCount/hospitalQuant));
+		resourceAverageList.add(new ResourceAverageDto("Tomógrafo", tomografoCount/hospitalQuant));
+		resourceAverageList.add(new ResourceAverageDto("Ambulância", ambulanciaCount/hospitalQuant));
+		
+		return resourceAverageList;
 	}
 }
