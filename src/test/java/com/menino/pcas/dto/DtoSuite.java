@@ -1,4 +1,4 @@
-package com.menino.pcas.test.dto;
+package com.menino.pcas.dto;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

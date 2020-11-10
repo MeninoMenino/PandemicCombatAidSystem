@@ -1,6 +1,7 @@
 package com.menino.pcas.domain.dto;
 
 public class ResourceAverageDto {
+	
 	private String name;
 	private float average;
 	

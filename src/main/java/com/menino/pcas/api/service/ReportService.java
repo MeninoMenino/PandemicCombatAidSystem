@@ -15,7 +15,7 @@ public class ReportService {
 		int highOccupancyCount = 0, lowOccupancyCount = 0;
 		float highOccupancyPercentage, lowOccupancyPercentage;
 		float[] percentageValues = new float[2];
-		
+
 		for(int i = 0; i < hospitalList.size(); i++) {
 			if(hospitalList.get(i).getOccupancyRate() > 90) {
 				highOccupancyCount++;
@@ -23,21 +23,21 @@ public class ReportService {
 				lowOccupancyCount++;
 			}
 		}
-		
+
 		highOccupancyPercentage = (100 * highOccupancyCount)/hospitalList.size();
 		lowOccupancyPercentage = (100 * lowOccupancyCount)/hospitalList.size();
-		
+
 		percentageValues[0] = highOccupancyPercentage;
 		percentageValues[1] = lowOccupancyPercentage;
-		
+
 		return percentageValues;
 	}
-	
+
 	public List<ResourceAverageDto> calculateResourcesAverage(List<HospitalResource> resourcesList, int hospitalQuant){
 		List<ResourceAverageDto> resourceAverageList = new ArrayList<>();
 		//Counters
 		int medicoCount = 0, enfermeiroCount = 0, respiradorCount = 0, tomografoCount = 0, ambulanciaCount = 0; 
-		
+
 		for(HospitalResource rsrc : resourcesList) {
 			switch(rsrc.getName()) {
 			case "Médico": 
@@ -57,13 +57,13 @@ public class ReportService {
 				break;
 			}
 		}
-		
+
 		resourceAverageList.add(new ResourceAverageDto("Médico", medicoCount/hospitalQuant));
 		resourceAverageList.add(new ResourceAverageDto("Enfermeiro", enfermeiroCount/hospitalQuant));
 		resourceAverageList.add(new ResourceAverageDto("Respirador", respiradorCount/hospitalQuant));
 		resourceAverageList.add(new ResourceAverageDto("Tomógrafo", tomografoCount/hospitalQuant));
 		resourceAverageList.add(new ResourceAverageDto("Ambulância", ambulanciaCount/hospitalQuant));
-		
+
 		return resourceAverageList;
 	}
 }

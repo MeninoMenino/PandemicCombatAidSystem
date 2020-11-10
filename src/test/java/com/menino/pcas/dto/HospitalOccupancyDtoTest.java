@@ -1,4 +1,4 @@
-package com.menino.pcas.test.dto;
+package com.menino.pcas.dto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
